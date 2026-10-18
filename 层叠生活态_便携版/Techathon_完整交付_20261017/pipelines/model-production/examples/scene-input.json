@@ -1,0 +1,115 @@
+{
+  "schemaVersion": 1,
+  "sceneId": "explicit-proxy-demo",
+  "template": "template.json",
+  "objects": [
+    {
+      "id": "photo1-user",
+      "photoId": "photo1",
+      "floor": 0,
+      "source": "user",
+      "asset": null,
+      "allowProxy": true,
+      "yawDeg": 0
+    },
+    {
+      "id": "photo1-ai",
+      "photoId": "photo1",
+      "floor": 0,
+      "source": "ai",
+      "asset": null,
+      "allowProxy": true,
+      "yawDeg": 0
+    },
+    {
+      "id": "photo2-user",
+      "photoId": "photo2",
+      "floor": 1,
+      "source": "user",
+      "asset": null,
+      "allowProxy": true,
+      "yawDeg": 0
+    },
+    {
+      "id": "photo2-ai",
+      "photoId": "photo2",
+      "floor": 1,
+      "source": "ai",
+      "asset": null,
+      "allowProxy": true,
+      "yawDeg": 0
+    },
+    {
+      "id": "photo3-user",
+      "photoId": "photo3",
+      "floor": 2,
+      "source": "user",
+      "asset": null,
+      "allowProxy": true,
+      "yawDeg": 0
+    },
+    {
+      "id": "photo3-ai",
+      "photoId": "photo3",
+      "floor": 2,
+      "source": "ai",
+      "asset": null,
+      "allowProxy": true,
+      "yawDeg": 0
+    },
+    {
+      "id": "photo4-user",
+      "photoId": "photo4",
+      "floor": 3,
+      "source": "user",
+      "asset": null,
+      "allowProxy": true,
+      "yawDeg": 0
+    },
+    {
+      "id": "photo4-ai",
+      "photoId": "photo4",
+      "floor": 3,
+      "source": "ai",
+      "asset": null,
+      "allowProxy": true,
+      "yawDeg": 0
+    },
+    {
+      "id": "photo5-user",
+      "photoId": "photo5",
+      "floor": 4,
+      "source": "user",
+      "asset": null,
+      "allowProxy": true,
+      "yawDeg": 0
+    },
+    {
+      "id": "photo5-ai",
+      "photoId": "photo5",
+      "floor": 4,
+      "source": "ai",
+      "asset": null,
+      "allowProxy": true,
+      "yawDeg": 0
+    },
+    {
+      "id": "photo6-user",
+      "photoId": "photo6",
+      "floor": 5,
+      "source": "user",
+      "asset": null,
+      "allowProxy": true,
+      "yawDeg": 0
+    },
+    {
+      "id": "photo6-ai",
+      "photoId": "photo6",
+      "floor": 5,
+      "source": "ai",
+      "asset": null,
+      "allowProxy": true,
+      "yawDeg": 0
+    }
+  ]
+}

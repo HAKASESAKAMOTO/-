@@ -1,0 +1,118 @@
+{
+  "schemaVersion": "1.0",
+  "deliveryId": "Techathon_完整交付_20261017",
+  "deliveryDate": "2026-10-17",
+  "root": "Techathon_完整交付_20261017",
+  "capabilities": {
+    "rodin": {
+      "status": "available_local",
+      "available": true,
+      "modes": ["desktop", "pipeline-cli"],
+      "liveConnectionVerified": false,
+      "realGenerationVerified": false,
+      "canonicalFields": ["sessionId", "photoId", "objectId", "inputVersion", "userBox"],
+      "note": "本地应用和流水线已交付；真实供应商调用仍需提供API Key、授权图片和扣费条件。"
+    },
+    "modelProduction": {
+      "status": "available_local",
+      "inputContract": "sceneManifest.v1",
+      "outputContract": "sceneBuildReport.v1"
+    },
+    "assembler": {
+      "status": "available_local",
+      "inputContract": "building.blend + 12 static GLB + 12-slot JSON",
+      "coordinateSystem": "Y_UP"
+    }
+  },
+  "modules": [
+    {
+      "id": "techathon-rodin-desktop",
+      "title": "Rodin 图片生成桌面应用",
+      "kind": "desktop",
+      "status": "implemented",
+      "source": "Techathon_完整交付_20261017/apps/rodin-generator/README.md",
+      "entrypoint": "Techathon_完整交付_20261017/releases/rodin-generator/RodinImageToGLB.exe",
+      "contract": "rodinJob.v1",
+      "supports": ["多图选择", "每图独立GLB", "任务恢复", "失败重试"],
+      "external": "Rodin Gen-2.5 API; real request not verified in this delivery"
+    },
+    {
+      "id": "techathon-rodin-pipeline",
+      "title": "Rodin 生成流水线 CLI",
+      "kind": "CLI",
+      "status": "implemented",
+      "source": "Techathon_完整交付_20261017/pipelines/model-production/README.md",
+      "entrypoint": "Techathon_完整交付_20261017/pipelines/model-production/scripts/rodin.py",
+      "contract": "rodinJob.v1",
+      "commands": ["submit", "status", "download", "resume", "reconcile"],
+      "providerEndpoints": ["/rodin", "/status", "/download"],
+      "canonicalArgs": ["--session", "--object-id", "--version", "--image"]
+    },
+    {
+      "id": "techathon-model-production",
+      "title": "照片处理与场景生产流水线",
+      "kind": "CLI",
+      "status": "implemented",
+      "source": "Techathon_完整交付_20261017/pipelines/model-production/README.md",
+      "entrypoints": [
+        "Techathon_完整交付_20261017/pipelines/model-production/scripts/prepare_photo.py",
+        "Techathon_完整交付_20261017/pipelines/model-production/scripts/bind_assets.py",
+        "Techathon_完整交付_20261017/pipelines/model-production/scripts/build_scene.py"
+      ],
+      "contracts": ["photoCrop.v1", "sceneManifest.v1", "sceneBuildReport.v1"],
+      "canonicalArgs": ["photoId", "objectId", "inputVersion", "userBox", "rodinJobKey"]
+    },
+    {
+      "id": "techathon-assembler-cpp",
+      "title": "C++ 静态网格装配器",
+      "kind": "desktop",
+      "status": "implemented",
+      "source": "Techathon_完整交付_20261017/apps/assembler/README.md",
+      "entrypoint": "Techathon_完整交付_20261017/releases/assembler/LayerAssembler-CPP.exe",
+      "contract": "assemblyInput.v1",
+      "formats": ["blend", "glb", "json"],
+      "requires": ["1 building.blend", "12 static GLB", "12 slots"]
+    },
+    {
+      "id": "techathon-assembler-python",
+      "title": "Python 静态网格装配器",
+      "kind": "desktop",
+      "status": "implemented",
+      "source": "Techathon_完整交付_20261017/apps/assembler/README.md",
+      "entrypoint": "Techathon_完整交付_20261017/releases/assembler/LayerAssembler-Python.exe",
+      "contract": "assemblyInput.v1",
+      "formats": ["blend", "glb", "json"],
+      "requires": ["1 building.blend", "12 static GLB", "12 slots"]
+    }
+  ],
+  "contracts": {
+    "rodinJob.v1": {
+      "identity": ["sessionId", "objectId", "inputVersion", "imageSha256", "params"],
+      "states": ["NEW", "UNKNOWN", "SUBMITTED", "RUNNING", "READY", "DONE", "FAILED", "REJECTED"],
+      "result": "GLB",
+      "idempotency": "A crash or ambiguous provider response is reconciled before any resubmission."
+    },
+    "photoCrop.v1": {
+      "input": ["photoId", "inputVersion", "userBox"],
+      "box": "normalized {x,y,w,h}, top-left origin after EXIF correction",
+      "limit": "15 MiB source image; JPEG/PNG/WebP"
+    },
+    "sceneManifest.v1": {
+      "required": ["schemaVersion", "sceneId", "template", "objects"],
+      "objects": "Exactly 12 unique objectId values: six photoId pairs, one source=user and one source=ai per floor.",
+      "assetOrigin": ["generated", "library", "proxy"],
+      "coordinateSystem": "Y_UP"
+    },
+    "sceneBuildReport.v1": {
+      "required": ["schemaVersion", "sceneId", "templateVersion", "coordinateSystem", "qualityStatus", "placements"],
+      "placementIdentity": ["objectId", "photoId", "floor", "slotId"],
+      "result": ["building.blend", "building.glb", "scene.json", "preview.png"]
+    },
+    "assemblyInput.v1": {
+      "building": "Static blend mesh; modifiers and geometry nodes must be applied before import.",
+      "objects": "Exactly 12 static triangle GLB files with embedded PNG/JPEG textures.",
+      "slots": "Exactly 12 unique slots; position is bottom center and size is width/height/depth.",
+      "coordinateSystem": "Y_UP or Z_UP, normalized to Y_UP by the reader"
+    }
+  }
+}

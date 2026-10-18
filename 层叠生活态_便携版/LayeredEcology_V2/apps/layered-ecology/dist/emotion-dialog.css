@@ -1,0 +1,24 @@
+.emotion-hit-layer { position:fixed; inset:0; z-index:6; pointer-events:none; }
+.emotion-hit-layer .emotion-hit { position:absolute; min-width:44px; min-height:44px; padding:0; border:0; border-radius:50%; background:transparent; color:transparent; pointer-events:auto; transform:translate(-50%,-50%); }
+.emotion-hit-layer .emotion-hit:hover { background:transparent; border:0; }
+.emotion-hit-layer .emotion-hit:focus-visible { outline:2px solid #fff; outline-offset:3px; box-shadow:0 0 0 5px #0066cc; }
+.emotion-hit[hidden] { display:none; }
+.emotion-state-note { position:fixed; left:50%; bottom:16px; transform:translateX(-50%); z-index:7; max-width:calc(100% - 32px); padding:10px 16px; background:#fff; color:#1d1d1f; border-radius:8px; font:14px/1.5 system-ui,"Microsoft YaHei",sans-serif; text-align:center; }
+.emotion-state-note[hidden] { display:none; }
+#emotion-dialog{position:fixed;z-index:9;width:310px;max-width:calc(100vw - 28px);padding:22px 23px 23px;background:rgba(20,22,24,.96);color:#f7f7f2;border:1px solid rgba(255,255,255,.18);border-radius:16px;box-shadow:0 18px 65px rgba(0,0,0,.32);backdrop-filter:blur(22px);font-family:Inter,"PingFang SC","Microsoft YaHei",sans-serif;animation:card-enter .25s ease both}
+#emotion-dialog[hidden]{display:none}
+.card-close{position:absolute;top:10px;right:10px;border:0;background:none;color:rgba(255,255,255,.65);font:23px/28px sans-serif;width:32px;height:32px;cursor:pointer;border-radius:50%}
+.card-close:hover,.card-close:focus-visible{background:rgba(255,255,255,.1);color:#fff}
+.card-object{margin:0 30px 11px 0;color:#a6a8a8;font-size:11px;letter-spacing:.12em;line-height:1.7}
+.card-emotion{margin:0 0 18px;color:var(--emotion-color);font:34px/1.25 "Songti SC","Noto Serif SC",serif;letter-spacing:.08em}
+.card-separator{height:1px;background:linear-gradient(90deg,rgba(var(--emotion-rgb),.6),rgba(255,255,255,.08));margin:0 0 17px}
+.card-feature-label{margin:0 0 10px;font-size:10px;color:#9a9d9e;letter-spacing:.1em}
+.card-features{display:flex;gap:7px;flex-wrap:wrap;margin:0;padding:0;list-style:none}
+.card-features li{font-size:12px;line-height:1.5;padding:6px 9px;border:1px solid rgba(255,255,255,.14);background:rgba(255,255,255,.045);border-radius:6px;color:#ecece6}
+.card-note{margin:12px 0 0;color:#888c8d;font-size:10px;line-height:1.6}
+@keyframes card-enter{from{opacity:0;translate:0 7px}to{opacity:1;translate:0 0}}
+@media(max-width:520px){#emotion-dialog{width:280px;padding:20px}.card-emotion{font-size:31px}}
+@media(prefers-reduced-motion:reduce){#emotion-dialog{animation:none}}
+#emotion-dialog{max-height:calc(100svh - 100px);overflow-y:auto;overscroll-behavior:contain}.card-features li{max-width:100%;overflow-wrap:anywhere}
+
+#emotion-dialog{margin:0;inset:auto;box-sizing:border-box}#emotion-dialog:not([open]){display:none}#emotion-dialog .card-close{min-height:32px;padding:0}#emotion-dialog .card-object{overflow-wrap:anywhere}

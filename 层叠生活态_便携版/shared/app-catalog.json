@@ -1,0 +1,12 @@
+{
+  "schemaVersion": "1.0",
+  "scope": {"sharing": "poster-download", "browse": "two-existing-buildings", "rodin": "local-desktop-and-cli"},
+  "buildings": [
+    {"buildingId": "classic", "title": "这是我的生活", "description": "蓝色正交建筑与物件轮廓，背面查看情绪气泡。", "kind": "example", "viewerUrl": "/buildings/classic/", "previewUrl": "/api/v1/buildings/classic/preview", "generatorId": "classic-poster"},
+    {"buildingId": "ecology", "title": "层叠生活", "description": "烘焙灯光、通透楼层与实体旋钮联动。", "kind": "example", "viewerUrl": "/buildings/ecology/?api=v1", "previewUrl": "/api/v1/buildings/ecology/preview", "generatorId": "ecology-poster"}
+  ],
+  "posterGenerators": [
+    {"generatorId": "classic-poster", "buildingId": "classic", "title": "经典海报", "themes": ["blue", "yellow"], "faces": ["front", "back", "left", "right"], "viewMode": "fixed-face", "width": 2481, "height": 3508},
+    {"generatorId": "ecology-poster", "buildingId": "ecology", "title": "灯光海报", "themes": ["original"], "faces": [], "viewMode": "current-view", "width": 2481, "height": 3508}
+  ]
+}

@@ -1,0 +1,119 @@
+/* 情绪轮盘 · 展厅夜间主题
+   只覆盖样式，不改情绪环的逻辑。轮盘本身的情绪色块保留，像一块在暗处发光的彩色玻璃。 */
+:root {
+  color-scheme: dark;
+  --paper: #ece5d6; --dim: rgba(236, 229, 214, .64); --faint: rgba(236, 229, 214, .38);
+  --hair: rgba(236, 229, 214, .12); --hair-strong: rgba(236, 229, 214, .26);
+  --amber: #e8c486; --signal: #e5352b; --void: #030406;
+  --panel: #080e19;
+  --font-sans: "Inter", "PingFang SC", "Microsoft YaHei UI", "Microsoft YaHei", "Noto Sans SC", sans-serif;
+  --serif: "Noto Serif SC", "Source Han Serif SC", "Songti SC", "STSong", "SimSun", serif;
+  --mono: "JetBrains Mono", "SF Mono", "Cascadia Mono", Consolas, Menlo, monospace;
+}
+html { background: radial-gradient(120% 70% at 70% -10%, #0c1a35 0%, #060a14 48%, #030406 100%) fixed #030406 !important; color: var(--paper) !important; }
+html.is-embedded, html.is-embedded body { background: transparent !important; }
+::selection { background: var(--signal); color: var(--void); }
+
+/* 示例页和会话页使用同一夜间主题，覆盖示例页原有的浅色表面。 */
+body { color: var(--paper); }
+.site-header { background: var(--panel); border-color: var(--hair); }
+.progress-step, .progress-step.completed { color: var(--dim); }
+.progress-step i { border-color: var(--hair-strong); }
+.progress-step.completed i { background: transparent; border-color: var(--hair-strong); color: var(--amber); }
+.progress-step.current { color: var(--paper); }
+.progress-step.current i { background: var(--amber); border-color: var(--amber); color: var(--void); }
+.progress-line { background: var(--hair-strong); }
+.intro h1, .intro h1 > span { color: var(--paper); font-family: var(--serif); font-weight: 400; }
+.intro-description, .intro-side, .eyebrow { color: var(--dim); }
+.eyebrow-line { background: var(--amber); }
+.photo-card { background: var(--panel); border-color: var(--hair); border-radius: 0; box-shadow: none; }
+.photo-badge { background: transparent; border-color: var(--hair-strong); border-radius: 0; color: var(--dim); }
+.photo-frame { background: var(--void); }
+.object-eyebrow, .object-caption { color: var(--dim); }
+.object-eyebrow > span { background: var(--amber); }
+.object-form > input { background: var(--void); border-color: var(--amber); color: var(--paper); }
+button:focus-visible, a:focus-visible, input:focus-visible, summary:focus-visible { outline-color: var(--amber); }
+
+.session-page { color: var(--paper); }
+.session-header { border-color: var(--hair); color: var(--dim); }
+.session-page h1 { color: var(--paper); font-family: var(--serif); font-weight: 400; letter-spacing: .06em; }
+.photo-tabs button, .session-page button:not(.confirm-button):not(.icon-button) {
+  border: 1px solid var(--hair-strong); border-radius: 0; background: transparent; color: var(--dim);
+  font-family: var(--mono); letter-spacing: .14em; transition: color .3s, border-color .3s, background .3s;
+}
+.photo-tabs button:hover, .session-page button:not(.confirm-button):not(.icon-button):hover:enabled { border-color: var(--paper); color: var(--paper); }
+.photo-tabs button[aria-pressed=true] { background: var(--paper); border-color: var(--paper); color: var(--void); }
+
+.annotation-panel { background: rgba(7, 16, 31, .62); border: 1px solid var(--hair); border-radius: 0; }
+.annotation-panel > p { color: var(--faint); letter-spacing: .06em; }
+.annotation-image { background: #0a0f19; outline: 1px solid var(--hair); }
+.selection-box { border-color: var(--amber); background: rgba(232, 196, 134, .16); }
+.annotation-panel > label { color: var(--dim); }
+.annotation-panel input:not([type=checkbox]), .annotation-panel select {
+  border: 1px solid var(--hair-strong); border-radius: 0; background: rgba(3, 4, 6, .6); color: var(--paper);
+}
+.annotation-panel input:not([type=checkbox]):focus, .annotation-panel select:focus { outline: 1px solid var(--amber); outline-offset: 0; border-color: var(--amber); }
+.annotation-panel input::placeholder { color: var(--faint); }
+.annotation-panel select option { background: #0a0f19; color: var(--paper); }
+.annotation-panel input[type=checkbox] { accent-color: var(--signal); }
+.session-page .session-save { background: transparent !important; border-color: var(--amber) !important; color: var(--amber) !important; }
+.session-page .session-save:hover:enabled { background: var(--amber) !important; color: var(--void) !important; }
+.session-error { color: #f08a80 !important; }
+.analysis-result { border-color: var(--hair); }
+.analysis-result h2 { color: var(--paper); font-family: var(--serif); font-weight: 400; }
+.analysis-result p { color: var(--dim); }
+
+.icon-button { color: var(--faint); }
+.icon-button:hover, .icon-button.active { background: rgba(236, 229, 214, .08); color: var(--paper); }
+.wheel-heading h2 { color: var(--faint); letter-spacing: .2em; }
+.tiny-orbit { border-color: var(--amber); }
+.tiny-orbit:after { background: var(--signal); }
+.help-panel { background: rgba(7, 12, 22, .94); border: 1px solid var(--hair-strong); border-radius: 0; color: var(--dim); box-shadow: 0 20px 60px rgba(0, 0, 0, .5); }
+.help-panel > strong { color: var(--paper); }
+
+.wheel-stage { filter: drop-shadow(0 0 40px rgba(232, 196, 134, .12)); }
+.emotion-cell { stroke: #05070c; stroke-width: 1.6px; }
+.emotion-cell.cell-hover, .emotion-cell.cell-drag { stroke: var(--paper); }
+.emotion-cell.cell-selected { stroke: #fff; stroke-width: 2.6px; }
+.center-cell { fill: var(--panel); stroke: #05070c; }
+.center-cell.cell-hover, .center-cell.cell-drag, .center-cell.cell-selected { fill: #182435; stroke: var(--amber); }
+.center-word { fill: var(--paper); }
+.emotion-word, .word-active { fill: #fffaf0; paint-order: stroke; stroke: rgba(3, 4, 6, .62); stroke-width: 3px; stroke-linejoin: round; }
+.word-active { stroke: rgba(3, 4, 6, .85); }
+.axis-labels text, .axis-labels { fill: var(--dim); }
+.axis-en { fill: var(--faint); font-family: var(--mono); }
+.axis-tick { stroke: var(--hair-strong); }
+
+.result-card { background: rgba(7, 16, 31, .62); border: 1px solid var(--hair); border-radius: 0; }
+.result-card.has-selection { background: linear-gradient(115deg, color-mix(in srgb, var(--emotion-accent) 18%, #070d18), rgba(7, 16, 31, .62) 70%); border-color: color-mix(in srgb, var(--emotion-accent) 50%, transparent); }
+.result-orb { background: rgba(3, 4, 6, .6); border-color: var(--hair-strong); color: var(--faint); }
+.has-selection .result-orb { background: color-mix(in srgb, var(--emotion-accent) 14%, #05070c); }
+.result-title > span { color: var(--faint); letter-spacing: .18em; }
+.result-title > strong, .has-selection .result-title > strong { color: var(--paper); font-family: var(--serif); font-weight: 400; }
+.result-description { color: var(--dim); }
+.result-details { color: var(--faint); }
+.result-details b { color: var(--paper); }
+.intensity-bars > i { background: rgba(236, 229, 214, .16); }
+.intensity-bars > i.filled { background: var(--emotion-accent, var(--amber)); }
+.selection-status { color: var(--dim); }
+.selection-status > span { background: var(--emotion-accent, var(--amber)); box-shadow: 0 0 8px var(--emotion-accent, var(--amber)); }
+
+.confirm-button { border: 1px solid var(--paper); border-radius: 0; background: var(--paper); color: var(--void); letter-spacing: .16em; box-shadow: none; }
+.confirm-button:hover:enabled { background: var(--amber); border-color: var(--amber); box-shadow: 0 0 0 6px rgba(232, 196, 134, .12); }
+.confirm-button:disabled { background: transparent; border: 1px dashed var(--hair-strong); color: var(--faint); }
+
+.result-dialog { background: #080d17; border: 1px solid var(--hair-strong); border-radius: 0; color: var(--paper); box-shadow: 0 40px 120px rgba(0, 0, 0, .7), 0 0 0 1px rgba(229, 53, 43, .2); }
+.result-dialog::backdrop { background: rgba(3, 4, 6, .6); }
+.dialog-check { background: rgba(232, 196, 134, .1); border-color: var(--amber); color: var(--amber); }
+.dialog-inner > .eyebrow { color: var(--faint); font-family: var(--mono); letter-spacing: .26em; }
+.dialog-inner > h2 { font-family: var(--serif); font-weight: 400; }
+.dialog-subtitle { color: var(--dim); }
+.dialog-subtitle > span { color: var(--amber); }
+.dialog-summary { background: rgba(236, 229, 214, .05); border: 1px solid var(--hair); border-radius: 0; color: var(--dim); }
+.dialog-summary > strong { color: var(--paper); font-family: var(--serif); font-weight: 400; }
+.dialog-summary > span { border-color: var(--hair-strong); }
+.photo-card-heading, .photo-card-heading svg { color: var(--dim); }
+.object-name-row h2 { font-family: var(--serif); font-weight: 400; color: var(--paper); }
+.photo-card-footer { border-color: var(--hair); color: var(--dim); }
+.photo-card-footer > button { color: var(--amber); }
+@media (max-width: 800px) { .photo-tabs button { padding: 9px 11px !important; letter-spacing: .02em !important; white-space: nowrap; } }

@@ -1,0 +1,17 @@
+# Private provider configuration (including temporary atomic-write files).
+**/.local/
+**/.env
+**/.env.*
+# Local dependencies, browsers, sessions, uploads and generated artifacts.
+**/node_modules/
+**/runtime/
+**/receiver/browser/
+**/receiver/data/
+**/outputs/
+**/__pycache__/
+*.log
+*.sqlite3
+*.sqlite3-*
+**/hardware/dashboard/uart_*.jsonl
+**/_frontend_backup_*/
+**/receiver/dist/

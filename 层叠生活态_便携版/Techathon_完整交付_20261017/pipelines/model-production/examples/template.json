@@ -1,0 +1,186 @@
+{
+  "version": "demo-1",
+  "buildingAsset": null,
+  "slots": [
+    {
+      "id": "f0-user",
+      "floor": 0,
+      "source": "user",
+      "position": [
+        -1.15,
+        0,
+        0
+      ],
+      "size": [
+        1.7,
+        1.6,
+        1.8
+      ]
+    },
+    {
+      "id": "f0-ai",
+      "floor": 0,
+      "source": "ai",
+      "position": [
+        1.15,
+        0,
+        0
+      ],
+      "size": [
+        1.7,
+        1.6,
+        1.8
+      ]
+    },
+    {
+      "id": "f1-user",
+      "floor": 1,
+      "source": "user",
+      "position": [
+        -1.15,
+        2,
+        0
+      ],
+      "size": [
+        1.7,
+        1.6,
+        1.8
+      ]
+    },
+    {
+      "id": "f1-ai",
+      "floor": 1,
+      "source": "ai",
+      "position": [
+        1.15,
+        2,
+        0
+      ],
+      "size": [
+        1.7,
+        1.6,
+        1.8
+      ]
+    },
+    {
+      "id": "f2-user",
+      "floor": 2,
+      "source": "user",
+      "position": [
+        -1.15,
+        4,
+        0
+      ],
+      "size": [
+        1.7,
+        1.6,
+        1.8
+      ]
+    },
+    {
+      "id": "f2-ai",
+      "floor": 2,
+      "source": "ai",
+      "position": [
+        1.15,
+        4,
+        0
+      ],
+      "size": [
+        1.7,
+        1.6,
+        1.8
+      ]
+    },
+    {
+      "id": "f3-user",
+      "floor": 3,
+      "source": "user",
+      "position": [
+        -1.15,
+        6,
+        0
+      ],
+      "size": [
+        1.7,
+        1.6,
+        1.8
+      ]
+    },
+    {
+      "id": "f3-ai",
+      "floor": 3,
+      "source": "ai",
+      "position": [
+        1.15,
+        6,
+        0
+      ],
+      "size": [
+        1.7,
+        1.6,
+        1.8
+      ]
+    },
+    {
+      "id": "f4-user",
+      "floor": 4,
+      "source": "user",
+      "position": [
+        -1.15,
+        8,
+        0
+      ],
+      "size": [
+        1.7,
+        1.6,
+        1.8
+      ]
+    },
+    {
+      "id": "f4-ai",
+      "floor": 4,
+      "source": "ai",
+      "position": [
+        1.15,
+        8,
+        0
+      ],
+      "size": [
+        1.7,
+        1.6,
+        1.8
+      ]
+    },
+    {
+      "id": "f5-user",
+      "floor": 5,
+      "source": "user",
+      "position": [
+        -1.15,
+        10,
+        0
+      ],
+      "size": [
+        1.7,
+        1.6,
+        1.8
+      ]
+    },
+    {
+      "id": "f5-ai",
+      "floor": 5,
+      "source": "ai",
+      "position": [
+        1.15,
+        10,
+        0
+      ],
+      "size": [
+        1.7,
+        1.6,
+        1.8
+      ]
+    }
+  ]
+}

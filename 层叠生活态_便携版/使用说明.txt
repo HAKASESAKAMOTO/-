@@ -1,0 +1,29 @@
+﻿层叠生活态 · 便携版
+====================
+
+运行
+  双击「启动层叠生活.cmd」。窗口开着服务就在运行，关闭窗口即停止服务。
+  浏览器会自动打开 http://127.0.0.1:8790/ ，全流程都在这一个页面里完成。
+
+环境要求
+  - Windows 10/11 64 位。Node.js、PowerShell 7、Chromium 已包含在 runtime 文件夹，无需安装。
+  - 需要联网：草船二维码、DeepSeek/Qwen 识别、Rodin 生成都是在线服务。
+  - 3D 模型生成优先使用 hardware/runtime 中已包含的 Python，无需另装系统 Python。
+
+内容
+  - 启动时创建新会话，从保留色彩与灯光的空大楼开始；照片、物件和情绪气泡只使用本轮数据。
+  - 下一轮：在页面「工作人员控制」里点击「开始新一轮」。旧照片、标注和模型保留在 receiver/data/sessions。
+  - 旋转轴接入 UART／USB-UART 接口后，展开页尾「工作人员控制」，点击「刷新串口」，选择 COM 端口并「连接并同步」。收起面板后仍会同步。详细步骤见「本次更新与旋转轴使用.txt」。
+
+API 密钥（重要）
+  - 启动程序后打开 http://127.0.0.1:8790/api-keys.html，填写 DeepSeek、Rodin、Qwen 三个 API Key，点击「保存」。
+  - UI 文件：receiver/public/api-keys.html；唯一密钥文件：.local/api-keys.json。文件不存在时程序会自动创建三个空字段。
+  - 输入新 Key 可以替换，留空保留原值；保存后下一次 API 调用生效，不必重启。需要清空某个 Key 时，在 JSON 中将对应值改为 ""。
+  - JSON 字段为 DEEPSEEK_API_KEY、RODIN_API_KEY、QWEN_API_KEY。不再从环境变量或 provider-keys.cjs 读取这些密钥。
+  - .gitignore 已排除 .local/ 和 .env*。推送 GitHub 时不提交本地密钥；手工打包公开分享时也要排除 .local/。
+  - DeepSeek 主线路和 Qwen 备用线路位于 scripts/test_deepseek_json_mode.ps1；Rodin 位于 Techathon_完整交付_20261017/pipelines/model-production/scripts/rodin.py。
+  - 本次仅配置 Key，API 地址和模型名称仍使用原脚本中的默认值。Qwen 当前使用 maas.qianwenaiapi.com 接口，填写的 Key 须与该接口匹配。
+
+说明
+  - 服务只监听本机 127.0.0.1，没有登录鉴权，局域网其他设备无法访问。
+  - 经典楼导出海报使用预渲染图片；重新渲染需要 Blender，本包不包含。

@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#030406" />
+    <title>图片接收 · 层叠生活态</title>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23030406'/%3E%3Cg fill='none' stroke-width='1.6'%3E%3Cpath stroke='%23e8c486' d='m5 11 22-6M5 26l22-6'/%3E%3Cpath stroke='%23e5352b' d='m5 18.5 22-6'/%3E%3C/g%3E%3C/svg%3E">
+    <link rel="stylesheet" href="/styles.css" />
+    <style>
+      .overture.compact { min-height: 74vh; min-height: 74svh; }
+      .overture.compact .dot-title { height: clamp(130px, 21vw, 320px); }
+    </style>
+  </head>
+  <body>
+    <canvas id="field" aria-hidden="true"></canvas>
+    <div class="vignette" aria-hidden="true"></div>
+    <div class="grain" aria-hidden="true"></div>
+
+    <header class="hud">
+      <a class="mark" href="/" aria-label="返回层叠生活态工作台">
+        <span class="mark-glyph" aria-hidden="true"><i></i><i></i><i></i></span>
+        <span><strong>层叠生活态</strong><small>PHOTO·INTAKE</small></span>
+      </a>
+      <div class="ticker" aria-hidden="true"><div class="ticker-track" id="ticker"></div></div>
+      <div class="hud-meta">
+        <span id="clock">--:--:--</span>
+        <span class="conn" id="connection"><b></b><span>正在连接本地接收器</span></span>
+      </div>
+    </header>
+
+    <nav class="rail" aria-label="展厅导航">
+      <a href="#room-0">00<span>序厅</span></a>
+      <a href="#room-1">01<span>接收</span></a>
+      <a href="#room-2">02<span>六个切片</span></a>
+    </nav>
+
+    <main>
+      <section class="overture compact" id="room-0">
+        <div class="overture-top">
+          <p class="label" data-reveal>Photo intake <b>/</b> 01 · 图片接收</p>
+          <p class="label" data-reveal style="--i:1" id="sessionTag">Session —</p>
+        </div>
+        <canvas class="dot-title" id="dotTitle" role="img" aria-label="图片接收"></canvas>
+        <div class="overture-copy">
+          <h1 data-reveal><span class="split-line"><span>把六个日常片段，</span></span><span class="split-line"><span style="--i:1"><em>带进这一层。</em></span></span></h1>
+          <p class="lede" data-reveal style="--i:2">用微信扫描二维码，上传 6 张记录你生活的照片。照片会在本机完成整理，再交给下一阶段。</p>
+        </div>
+      </section>
+
+      <section class="room" id="room-1">
+        <header class="room-head">
+          <span class="room-no" aria-hidden="true">01</span>
+          <div data-reveal>
+            <p class="label">Room 01 <em>—</em> Reception</p>
+            <h2>从手机开始<small>Scan, send, arrive.</small></h2>
+          </div>
+          <p class="room-note" data-reveal style="--i:1">只有经过内容解码、去重并成功保存的照片才会计入进度。</p>
+        </header>
+        <div class="intake">
+          <article class="qr-box" data-reveal>
+            <p class="label"><span>Scan to send</span><span class="live">Live</span></p>
+            <div class="qr-frame" id="qrStage">
+              <span class="corner" aria-hidden="true"></span>
+              <div class="qr-surface">
+                <img id="qrImage" alt="草船实时二维码" hidden />
+                <div id="qrPlaceholder" class="qr-placeholder"><span class="pixels"></span><span>正在准备实时二维码</span></div>
+              </div>
+            </div>
+            <div class="qr-foot"><span id="qrHint">二维码每 5 秒刷新一次</span><span id="qrState">等待二维码</span></div>
+            <button id="focusBrowser" class="btn btn-small" type="button">打开草船窗口 <span class="arrow" aria-hidden="true">↗</span></button>
+          </article>
+
+          <article class="counter" aria-live="polite" data-reveal style="--i:1">
+            <div class="counter-status">
+              <div class="status-line"><span class="status-dot" id="statusDot"></span><span id="statusText">正在准备接收器</span></div>
+              <span class="label" id="statusCode">WAITING</span>
+            </div>
+            <p class="count"><span id="progressCount">0</span><sup id="progressTarget">/6</sup><small id="progressHint">等待手机扫码</small></p>
+            <div class="strata" id="strata" aria-hidden="true"></div>
+            <div>
+              <ol class="steps" id="steps">
+                <li class="done"><b>01</b><span>手机扫码</span><i>DONE</i></li>
+                <li class="current"><b>02</b><span>传输与整理照片</span><i>NOW</i></li>
+                <li><b>03</b><span>确认顺序，开始探索</span><i>—</i></li>
+              </ol>
+              <p class="privacy-line" style="margin-top:18px">原图、预览图和会话记录都保存在本机当前会话中。</p>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="room" id="room-2">
+        <header class="room-head">
+          <span class="room-no" aria-hidden="true">02</span>
+          <div data-reveal>
+            <p class="label">Room 02 <em>—</em> Six fragments</p>
+            <h2>六张照片<small>Drag to reorder.</small></h2>
+          </div>
+          <p class="room-note" data-reveal style="--i:1">传输完成后会自动校验、去重并生成预览。拖动照片调整顺序，删除后可以再补充。</p>
+        </header>
+        <div id="slots" class="slots" aria-label="照片槽位"></div>
+
+        <div class="action-row" style="margin-top:70px">
+          <div class="action-copy"><span id="actionTitle">等待照片抵达</span><small id="actionDetail">只有经过内容解码、去重并成功保存的照片才会计入进度。</small></div>
+          <div class="action-buttons"><button id="explore" class="btn btn-signal" type="button" disabled>开始探索 <span class="arrow" aria-hidden="true">→</span></button></div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="colophon">
+      <div class="colophon-grid">
+        <p class="colophon-title" aria-hidden="true">Six<br>Fragments <span>·</span></p>
+        <p class="privacy-line">层叠生活态 · LAYERED ECOLOGY<br>服务只监听本机，照片不会离开这台电脑。</p>
+      </div>
+      <details class="admin-panel">
+        <summary>工作人员控制 · Staff only</summary>
+        <div class="admin-grid">
+          <button id="restartBrowser" class="btn btn-small" type="button">打开 / 重启草船网页</button>
+          <button id="toggleMode" class="btn btn-small" type="button">切换人工下载模式</button>
+          <button id="rescan" class="btn btn-small" type="button">重新扫描本地文件夹</button>
+          <button id="newSession" class="btn btn-small btn-danger" type="button">开始新会话</button>
+          <label class="btn btn-small file-picker">从电脑导入文件 <span class="arrow">+</span><input id="fileInput" type="file" multiple accept="image/jpeg,image/png,image/webp,.zip" /></label>
+        </div>
+        <p class="folder-note">人工模式请把文件保存到 <code id="folderPath">receiver/data/incoming</code>，或使用上面的电脑导入。</p>
+        <pre id="errorLog" class="error-log" hidden></pre>
+      </details>
+    </footer>
+
+    <script src="/ambient.js"></script>
+    <script src="/app.js" defer></script>
+  </body>
+</html>

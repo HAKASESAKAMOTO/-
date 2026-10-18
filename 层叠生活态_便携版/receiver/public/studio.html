@@ -1,0 +1,214 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#030406">
+  <title>层叠生活态 · 一件由六个日常片段构成的装置</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23030406'/%3E%3Cg fill='none' stroke-width='1.6'%3E%3Cpath stroke='%23e8c486' d='m5 11 22-6M5 26l22-6'/%3E%3Cpath stroke='%23e5352b' d='m5 18.5 22-6'/%3E%3C/g%3E%3C/svg%3E">
+  <link rel="stylesheet" href="/styles.css">
+  <link rel="stylesheet" href="/studio.css">
+</head>
+<body class="studio">
+  <canvas id="field" aria-hidden="true"></canvas>
+  <div class="vignette" aria-hidden="true"></div>
+  <div class="grain" aria-hidden="true"></div>
+
+  <header class="hud">
+    <a class="mark" href="/" aria-label="层叠生活态">
+      <span class="mark-glyph" aria-hidden="true"><i></i><i></i><i></i></span>
+      <span><strong>层叠生活态</strong><small>LAYERED·LIFE·STATE</small></span>
+    </a>
+    <div class="ticker" aria-hidden="true"><div class="ticker-track" id="ticker"></div></div>
+    <div class="hud-meta">
+      <span id="clock">--:--:--</span>
+      <span class="conn ready" id="connection"><b></b><span id="connectionText">本地工作台在线</span></span>
+    </div>
+  </header>
+
+  <nav class="rail" aria-label="展厅导航">
+    <a href="#room-0">00<span>序厅</span></a>
+    <a href="#room-1">01<span>接收</span></a>
+    <a href="#room-2">02<span>六个切片</span></a>
+    <a href="#room-3">03<span>情绪场</span></a>
+    <a href="#room-4">04<span>建造</span></a>
+    <a href="#buildingSection" id="railViewing" hidden>05<span>观景</span></a>
+  </nav>
+
+  <main>
+    <!-- 00 序厅 -->
+    <section class="overture" id="room-0">
+      <div class="overture-top">
+        <p class="label" data-reveal>An installation in six fragments <b>·</b> 一件由六个日常片段构成的装置</p>
+        <p class="label" data-reveal style="--i:1" id="sessionTag">Session —</p>
+      </div>
+      <canvas class="dot-title" id="dotTitle" role="img" aria-label="层叠生活态"></canvas>
+      <div class="overture-copy">
+        <h1 data-reveal><span class="split-line"><span>把六个日常片段，</span></span><span class="split-line"><span style="--i:1"><em>带进这一层。</em></span></span></h1>
+        <div data-reveal style="--i:2">
+          <p class="lede">扫码上传照片，用情绪轮盘标记感受。六张照片全部完成后，生活大楼会准备好，继续换个视角看看自己。</p>
+        </div>
+      </div>
+      <div class="overture-foot">
+        <a class="scroll-cue label" href="#room-1"><i></i>Enter · 向下进入展厅</a>
+        <span class="label">一份关于日常的自我观察 <b>/</b> 2026</span>
+      </div>
+    </section>
+
+    <!-- 01 接收 -->
+    <section class="room" id="room-1">
+      <header class="room-head">
+        <span class="room-no" aria-hidden="true">01</span>
+        <div data-reveal>
+          <p class="label">Room 01 <em>—</em> Reception</p>
+          <h2>接收<small>Six moments, sent from a phone.</small></h2>
+        </div>
+        <p class="room-note" data-reveal style="--i:1">用微信扫一扫，把六张记录生活的照片传到这里。每一张都会被校验、去重，然后成为大楼的一层。</p>
+      </header>
+
+      <div class="intake">
+        <article class="qr-box" data-reveal>
+          <p class="label"><span>Scan to send</span><span class="live">Live</span></p>
+          <div class="qr-frame">
+            <span class="corner" aria-hidden="true"></span>
+            <div class="qr-surface">
+              <img id="qrImage" alt="手机扫码上传二维码" hidden>
+              <div id="qrPlaceholder" class="qr-placeholder"><span class="pixels"></span><span>正在准备实时二维码</span></div>
+            </div>
+          </div>
+          <div class="qr-foot"><span>微信扫一扫</span><span id="qrState">等待二维码</span></div>
+          <button id="focusBrowser" class="btn btn-small" type="button">打开草船窗口 <span class="arrow">↗</span></button>
+        </article>
+
+        <article class="counter" aria-live="polite" data-reveal style="--i:1">
+          <div class="counter-status">
+            <div class="status-line"><span class="status-dot" id="statusDot"></span><span id="statusText">正在准备接收器</span></div>
+            <span class="label" id="statusCode">WAITING</span>
+          </div>
+          <p class="count"><span id="progressCount">0</span><sup>/6</sup><small id="progressHint">等待手机扫码</small></p>
+          <div class="strata" id="strata" aria-hidden="true"></div>
+          <div>
+            <ol class="steps" id="steps">
+              <li class="done"><b>01</b><span>手机扫码</span><i>DONE</i></li>
+              <li class="current"><b>02</b><span>传输与标记照片</span><i>NOW</i></li>
+              <li><b>03</b><span>换个视角看看自己的生活</span><i>—</i></li>
+            </ol>
+            <p class="privacy-line" style="margin-top:18px">原图、预览图和会话记录都保存在本机当前会话中。</p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- 02 六个切片 -->
+    <section class="room" id="room-2">
+      <header class="room-head">
+        <span class="room-no" aria-hidden="true">02</span>
+        <div data-reveal>
+          <p class="label">Room 02 <em>—</em> Six fragments</p>
+          <h2>六个切片<small>Your six moments.</small></h2>
+        </div>
+        <p class="room-note" data-reveal style="--i:1">传输完成后会自动校验、去重并生成预览。将光标停在一张照片上，看它在情绪场里的位置。</p>
+      </header>
+      <div id="slots" class="slots" aria-label="六张照片"></div>
+    </section>
+
+    <!-- 03 情绪场 -->
+    <section class="room" id="room-3">
+      <header class="room-head">
+        <span class="room-no" aria-hidden="true">03</span>
+        <div data-reveal>
+          <p class="label">Room 03 <em>—</em> Field of feeling</p>
+          <h2>情绪场<small>Mark how each moment felt.</small></h2>
+        </div>
+        <p class="room-note" data-reveal style="--i:1" id="emotionState">先试试情绪轮盘，上传六张照片后记录自己的感受。</p>
+      </header>
+      <div class="feeling-grid">
+        <div class="emotion-frame" data-reveal>
+          <iframe id="emotionFrame" title="情绪轮盘标注" hidden></iframe>
+          <div id="emotionEmpty" class="emotion-empty">正在打开情绪轮盘…</div>
+        </div>
+        <aside class="chart" data-reveal style="--i:1" aria-label="六个瞬间的情绪轨迹">
+          <div class="chart-head"><p class="label">Trajectory <b>·</b> 情绪轨迹</p><p class="label" id="chartCount">0 / 6</p></div>
+          <svg class="constellation" id="constellation" viewBox="-150 -150 300 300" role="img" aria-label="愉悦与激活两个维度上的情绪落点"></svg>
+          <ul class="legend" id="legend"></ul>
+        </aside>
+      </div>
+    </section>
+
+    <!-- 04 建造 -->
+    <section class="room construct" id="room-4">
+      <header class="room-head">
+        <span class="room-no" aria-hidden="true">04</span>
+        <div data-reveal>
+          <p class="label">Room 04 <em>—</em> Construction</p>
+          <h2>建造<small>AI finds a counterpart, Rodin gives it form.</small></h2>
+        </div>
+        <p class="room-note" data-reveal style="--i:1">六张照片全部标注后，AI 会在每张照片里找一件你没注意到的物体，再为每件物体生成 3D 模型，放进大楼的对应楼层。</p>
+      </header>
+      <div class="machine" data-reveal>
+        <div class="stage" id="stageAnalysis"><p class="label">Stage A</p><span class="stage-state">STANDBY</span><span class="stage-value">0<small>/6</small></span><span class="stage-name">识别新物体</span><div class="cells"></div></div>
+        <div class="stage" id="stageBuild"><p class="label">Stage B</p><span class="stage-state">STANDBY</span><span class="stage-value">0<small>/0</small></span><span class="stage-name">生成 3D 生活物件</span><div class="cells"></div></div>
+        <div class="stage" id="stagePlace"><p class="label">Stage C</p><span class="stage-state">STANDBY</span><span class="stage-value">—</span><span class="stage-name">放进大楼</span><div class="cells"></div></div>
+      </div>
+      <ul class="log" id="objectLog" data-reveal></ul>
+      <div class="action-row" data-reveal>
+        <div class="action-copy"><span id="actionTitle">等待六张照片完成标注</span><small id="actionDetail">完成所有标注后，按钮会变成可用状态。</small></div>
+        <div class="action-buttons">
+          <button id="othersBuilding" class="btn" type="button">看看别人的生活大楼 <span class="arrow">↗</span></button>
+          <button id="ownBuilding" class="btn btn-signal" type="button" disabled>换个视角看看自己的生活 <span class="arrow">→</span></button>
+        </div>
+      </div>
+    </section>
+
+    <!-- 05 观景 -->
+    <section id="buildingSection" class="room viewing" hidden>
+      <header class="room-head">
+        <span class="room-no" aria-hidden="true">05</span>
+        <div>
+          <p class="label">Room 05 <em>—</em> Viewing platform</p>
+          <h2 id="buildingTitle">自己的情绪大楼</h2>
+        </div>
+        <div class="building-actions">
+          <button id="viewOthers" class="btn btn-small" type="button">看看别人的生活大楼 <span class="arrow">↻</span></button>
+          <button id="export" class="btn btn-small btn-signal" type="button">导出海报 <span class="arrow">↓</span></button>
+          <a id="download" hidden download>下载 PNG ↓</a>
+        </div>
+      </header>
+      <div class="stage-frame"><iframe id="buildingViewer" title="生活大楼浏览器"></iframe></div>
+      <p class="building-status"><span id="buildingStatus">自己的内容已准备，正在打开生活大楼。</span><span>DRAG · 拖动旋转</span></p>
+    </section>
+  </main>
+
+  <footer class="colophon">
+    <div class="colophon-grid">
+      <p class="colophon-title" aria-hidden="true">Layered<br>Life <span>·</span> State</p>
+      <p class="privacy-line">层叠生活态 · LAYERED ECOLOGY<br>原图、预览图和会话记录都保存在本机当前会话中。<br>服务只监听本机，不会离开这台电脑。</p>
+    </div>
+    <details class="admin-panel">
+      <summary>工作人员控制 · Staff only</summary>
+      <div class="admin-grid">
+        <button id="newSession" class="btn btn-small btn-danger" type="button">开始新一轮</button>
+        <label class="btn btn-small file-picker">从电脑导入文件 <span class="arrow">+</span><input id="fileInput" type="file" multiple accept="image/jpeg,image/png,image/webp,.zip"></label>
+        <a class="btn btn-small" href="/receive">图片接收页 <span class="arrow">↗</span></a>
+      </div>
+      <section class="staff-hardware" aria-labelledby="serialHeading">
+        <h3 id="serialHeading">旋转轴</h3>
+        <div class="serial-controls">
+          <label>串口 <select id="serialPort"><option value="auto">自动识别</option></select></label>
+          <button id="serialRefresh" class="btn btn-small" type="button">刷新串口</button>
+          <button id="serialConnect" class="btn btn-small" type="button" aria-pressed="false">连接并同步</button>
+          <button id="serialZero" class="btn btn-small" type="button" disabled>对齐当前轴位</button>
+          <label class="serial-reverse"><input id="serialReverse" type="checkbox">反向</label>
+          <output id="serialAngle" aria-label="大楼旋转角度">0.0°</output>
+          <details class="serial-calibration"><summary>校准</summary><div class="serial-calibration-fields"><label>每圈步数 <input id="serialSteps" type="number" min="1" max="1000000" value="20"></label><button id="serialApply" class="btn btn-small" type="button">应用</button></div></details>
+          <p id="serialStatus" role="status">正在检查串口</p>
+        </div>
+      </section>
+    </details>
+  </footer>
+
+  <script src="/ambient.js"></script>
+  <script src="/studio.js"></script>
+  <script type="module" src="/hardware-controls.js"></script>
+</body>
+</html>

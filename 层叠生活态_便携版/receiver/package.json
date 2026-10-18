@@ -1,0 +1,31 @@
+{
+  "name": "layered-ecology-receiver",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "tsx src/index.ts",
+    "build": "tsc -p tsconfig.json",
+    "start": "node dist/src/index.js",
+    "test": "tsx --test tests/*.test.ts"
+  },
+  "dependencies": {
+    "@gltf-transform/cli": "4.5.1",
+    "chokidar": "^4.0.3",
+    "express": "^5.1.0",
+    "multer": "^2.0.2",
+    "playwright": "^1.56.1",
+    "sharp": "^0.34.3",
+    "unzipper": "^0.12.3",
+    "ws": "^8.18.2"
+  },
+  "devDependencies": {
+    "@types/express": "^5.0.5",
+    "@types/multer": "^2.0.0",
+    "@types/node": "^24.0.0",
+    "@types/unzipper": "^0.10.11",
+    "@types/ws": "^8.18.1",
+    "tsx": "^4.20.0",
+    "typescript": "^5.9.3"
+  }
+}

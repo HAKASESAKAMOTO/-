@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#171b22">
+  <meta name="description" content="在海报中拖动旋转层叠生态建筑，探索真实模型的空间与灯光。">
+  <title>层叠生态 · 交互海报</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="emotion-dialog.css">
+  <script type="importmap">{"imports":{"three":"./vendor/three.module.js"}}</script>
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="./" aria-label="层叠生态首页"><span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i></span>层叠生态<span class="brand-detail">交互海报</span></a>
+    <span class="top-hint">让空间，转个角度。</span>
+  </header>
+  <main class="workspace">
+    <section class="artwork" aria-label="交互海报画布">
+      <div class="poster" id="poster">
+        <img class="poster-layer back" id="posterBack" src="assets/poster-background.svg" alt="原稿背景" draggable="false">
+        <img class="poster-layer back" id="posterRearText" src="assets/poster-rear-text.svg" alt="原稿后层圆点文字" draggable="false">
+        <div id="modelWindow" class="model-window"></div>
+        <img class="poster-layer front" id="posterFront" src="assets/poster-front.svg" alt="原稿前景圆点文字" draggable="false">
+        <img id="fallback" class="poster-layer fallback" src="assets/poster-preview.jpg" alt="模型加载前的海报预览" draggable="false">
+        <div class="interaction" id="interaction" tabindex="0" role="region" aria-label="可旋转的三维建筑。拖动旋转，滚轮缩放；左右方向键旋转，加减号缩放，Home 复位。" aria-describedby="instructions"></div>
+        <div class="loading" id="loading" role="status"><span class="loading-dot"></span><span id="loadText">正在载入真实模型…</span></div>
+      </div>
+    </section>
+    <aside class="tools" aria-label="海报交互工具">
+      <div class="tool-heading"><h1>换个角度<br>看层叠生态</h1><p id="instructions">横向拖动，绕建筑旋转。<br>滚轮或双指缩放，探索每一层空间。</p></div>
+      <div class="view-tools">
+        <button id="reset" class="primary" disabled><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 10a8 8 0 1 1 1 7M4 4v6h6"/></svg>恢复原稿视角<span class="key">H</span></button>
+        <div class="button-pair">
+          <button id="rotateLeft" disabled aria-label="向左旋转 15 度"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m8 5-7 7 7 7M2 12h20"/></svg>左转</button>
+          <button id="rotateRight" disabled aria-label="向右旋转 15 度">右转<svg viewBox="0 0 24 24" aria-hidden="true"><path d="m16 5 7 7-7 7M22 12H2"/></svg></button>
+        </div>
+        <div class="zoom-row"><span>画面缩放</span><div class="zoom-buttons"><button id="zoomOut" disabled aria-label="缩小">−</button><output id="zoomValue" aria-label="缩放比例">100%</output><button id="zoomIn" disabled aria-label="放大">+</button></div></div>
+        <button id="autoRotate" disabled aria-pressed="false"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9 5 10 7-10 7Z"/></svg><span>自动旋转</span></button>
+      </div>
+      <div class="emotion-tools"><p id="emotionHint">转向建筑背面，发现情绪气泡</p><button id="popEmotion" disabled>释放一个情绪</button><span id="emotionLive" class="sr-only" aria-live="polite"></span></div>
+      <details class="hardware-tools">
+        <summary>硬件旋转接入</summary>
+        <div class="hardware-controls">
+          <p>旋转实体装置，让海报跟随角度。</p>
+          <button id="hardwareToggle" aria-pressed="false" disabled>开启硬件跟随</button>
+          <div class="hardware-reading"><span>接收角度</span><output id="hardwareAngle">—</output></div>
+          <button id="hardwareZero" disabled>将当前硬件位置设为零位</button>
+          <label class="hardware-direction"><input type="checkbox" id="hardwareReverse">反转旋转方向</label>
+          <p id="hardwareStatus" role="status">手动模式</p>
+          <p class="hardware-help">0° 为原稿视角，180° 为情绪背面。<br>停止跟随后可继续拖动。</p>
+        </div>
+      </details>
+      <div class="output-tools"><button id="export" disabled><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v12m-5-5 5 5 5-5M4 16v5h16v-5"/></svg>保存当前海报</button><button id="retry" hidden>重新加载模型</button><p class="output-note">导出当前角度的 PNG 图片</p></div>
+      <div class="model-note"><span class="status-dot" id="statusDot"></span><p id="statusText" role="status">模型载入中</p></div>
+      <p class="material-note">真实 Blender 建筑 · 烘焙灯光<br>保留原稿文字、屋顶二维码与室内陈设</p>
+    </aside>
+  </main>
+  <footer><span>海报里的空间，现在可以探索。</span><span>拖动旋转 / 滚轮缩放 / H 复位</span></footer>
+  <script type="module" src="app.js"></script>
+</body>
+</html>
